@@ -463,6 +463,13 @@ export default function App() {
         </div>
       </main>
 
+      {/* ================= FOOTER / COPYRIGHT ================= */}
+      <footer className="mt-auto py-5 border-t border-border-main bg-bg-card/40 text-center transition-colors duration-300">
+        <p className="text-xs text-txt-secondary font-medium tracking-wide">
+          &copy; 2026 Three Mister. All rights reserved.
+        </p>
+      </footer>
+
       {/* ================= EXPORT PROGRESS OVERLAY MODAL ================= */}
       {exportProgress !== null && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
