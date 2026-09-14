@@ -1,0 +1,6 @@
+{
+  "name": "3MR Ruster",
+  "description": "Alat interaktif untuk membuat efek halftone dan color knockout pada desain kaos DTF/DTG dengan ekspor PNG transparan beresolusi tinggi (kustom DPI).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

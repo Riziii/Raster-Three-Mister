@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #d4aa60;
+  --color-gold-hover: #c39950;
+  --color-gold-light: #f5dfba;
+  --color-gold-dark: #b58c42;
+  --color-maroon: #580001;
+  --color-maroon-hover: #780002;
+  --color-maroon-light: #a42c2e;
+  --color-maroon-dark: #3a0001;
+  --color-maroon-deep: #1f0000;
+
+  /* Theme variables mapped to CSS custom properties */
+  --color-bg-app: var(--bg-app);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-sub: var(--bg-card-sub);
+  --color-bg-input: var(--bg-input);
+  --color-border-main: var(--border-color);
+  --color-txt-primary: var(--text-primary);
+  --color-txt-secondary: var(--text-secondary);
+  --color-txt-muted: var(--text-muted);
+}
+
+/* Day / Siang Mode (Light Theme) */
+:root {
+  --bg-app: #f5f5f4; /* stone-100 */
+  --bg-card: #ffffff;
+  --bg-card-sub: #fafaf9; /* stone-50 */
+  --bg-input: #f5f5f4;
+  --border-color: rgba(88, 0, 1, 0.12); /* maroon border */
+  --text-primary: #1c1917; /* stone-900 */
+  --text-secondary: #57534e; /* stone-600 */
+  --text-muted: #78716c; /* stone-500 */
+}
+
+/* Night / Malam Mode (Dark Theme) */
+.dark {
+  --bg-app: #030303;
+  --bg-card: #060606;
+  --bg-card-sub: #0a0a0a;
+  --bg-input: #020202;
+  --border-color: rgba(212, 170, 96, 0.15); /* gold border */
+  --text-primary: #f4f4f5; /* slate-100 */
+  --text-secondary: #a1a1aa; /* slate-400 */
+  --text-muted: #71717a; /* slate-500 */
+}

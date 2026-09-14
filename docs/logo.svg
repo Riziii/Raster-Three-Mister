@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- 3MR Tertiary Submark Logo -->
+  <rect
+    x="100"
+    y="44"
+    width="312"
+    height="424"
+    rx="40"
+    ry="40"
+    fill="#560007"
+    stroke="#D29F54"
+    stroke-width="7"
+  />
+  <!-- Three Vertical Gold Stripes (3MR Submark) -->
+  <rect x="165" y="102" width="45" height="308" fill="#D29F54" />
+  <rect x="233.5" y="102" width="45" height="308" fill="#D29F54" />
+  <rect x="302" y="102" width="45" height="308" fill="#D29F54" />
+</svg>
