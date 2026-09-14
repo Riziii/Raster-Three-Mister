@@ -464,10 +464,12 @@ export default function App() {
       </main>
 
       {/* ================= FOOTER / COPYRIGHT ================= */}
-      <footer className="mt-auto py-5 border-t border-border-main bg-bg-card/40 text-center transition-colors duration-300">
-        <p className="text-xs text-txt-secondary font-medium tracking-wide">
-          &copy; 2026 Three Mister. All rights reserved.
-        </p>
+      <footer className="mt-auto bg-[#580001] border-t border-[#d4aa60]/30 shadow-md py-4 px-4 text-center">
+        <div className="max-w-7xl mx-auto flex items-center justify-center">
+          <p className="text-xs sm:text-sm font-medium tracking-wide text-white">
+            &copy; 2026 Three Mister. All rights reserved.
+          </p>
+        </div>
       </footer>
 
       {/* ================= EXPORT PROGRESS OVERLAY MODAL ================= */}
