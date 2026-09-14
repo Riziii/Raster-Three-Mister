@@ -24,24 +24,56 @@
 
 /* Day / Siang Mode (Light Theme) */
 :root {
-  --bg-app: #f5f5f4; /* stone-100 */
+  --bg-app: #f8f8f7;
   --bg-card: #ffffff;
-  --bg-card-sub: #fafaf9; /* stone-50 */
-  --bg-input: #f5f5f4;
-  --border-color: rgba(88, 0, 1, 0.12); /* maroon border */
-  --text-primary: #1c1917; /* stone-900 */
-  --text-secondary: #57534e; /* stone-600 */
-  --text-muted: #78716c; /* stone-500 */
+  --bg-card-sub: #f3f3f2;
+  --bg-input: #ebebea;
+  --border-color: rgba(88, 0, 1, 0.14);
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #8c857f;
+  --checker-dark: #d8d8d6;
+  --checker-light: #ffffff;
 }
 
 /* Night / Malam Mode (Dark Theme) */
-.dark {
-  --bg-app: #030303;
-  --bg-card: #060606;
-  --bg-card-sub: #0a0a0a;
-  --bg-input: #020202;
-  --border-color: rgba(212, 170, 96, 0.15); /* gold border */
-  --text-primary: #f4f4f5; /* slate-100 */
-  --text-secondary: #a1a1aa; /* slate-400 */
-  --text-muted: #71717a; /* slate-500 */
+:root.dark,
+.dark,
+[data-theme="dark"] {
+  --bg-app: #0e0d0c;
+  --bg-card: #161413;
+  --bg-card-sub: #1e1b19;
+  --bg-input: #121110;
+  --border-color: rgba(212, 170, 96, 0.18);
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  --text-muted: #78716c;
+  --checker-dark: #1e293b;
+  --checker-light: #0f172a;
+}
+
+html, body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  min-height: 100%;
+}
+
+/* Custom smooth scrollbar that adapts to both modes */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-card-sub);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d4aa60;
 }

@@ -48,38 +48,38 @@ export const TShirtMockup: React.FC<TShirtMockupProps> = ({ processedImage, sett
   ];
 
   return (
-    <div className="relative flex flex-col h-full bg-slate-900 border border-slate-800 rounded-xl overflow-hidden select-none">
+    <div className="relative flex flex-col h-full bg-bg-card border border-border-main rounded-xl overflow-hidden select-none shadow-xl transition-colors duration-300">
       {/* Workspace Controls */}
-      <div className="flex items-center justify-between p-3 border-b border-slate-800 bg-slate-950/60 z-10">
+      <div className="flex items-center justify-between p-3 border-b border-border-main bg-bg-card-sub/90 backdrop-blur-sm z-10 transition-colors duration-300">
         <div className="flex items-center space-x-2">
-          <span className="text-xs font-semibold px-2 py-1 bg-maroon/10 text-gold rounded border border-gold/20">
-            {settings.mockupType === 't-shirt' ? 'Kaos Mockup' : 'Kanvas Flat'}
+          <span className="text-xs font-semibold px-2 py-1 bg-maroon/15 text-gold rounded border border-gold/20">
+            {settings.mockupType === 't-shirt' ? 'Kaos Mockup 👕' : 'Kanvas Flat 🖼️'}
           </span>
-          <span className="text-xs text-slate-400 hidden sm:inline">
-            Tarik untuk geser, gunakan tombol zoom untuk melihat detail dot
+          <span className="text-xs text-txt-secondary hidden sm:inline">
+            Tarik untuk geser kanvas, gunakan zoom untuk melihat dot raster
           </span>
         </div>
         
         <div className="flex items-center space-x-1">
           <button 
             onClick={() => setZoom(prev => Math.max(25, prev - 25))}
-            className="p-1.5 hover:bg-slate-800 text-slate-400 hover:text-white rounded transition"
+            className="p-1.5 hover:bg-bg-input text-txt-secondary hover:text-txt-primary rounded transition border border-border-main cursor-pointer"
             title="Perkecil Tampilan"
           >
             <ZoomOut size={16} />
           </button>
-          <span className="text-xs text-slate-300 font-mono w-10 text-center">{zoom}%</span>
+          <span className="text-xs text-txt-primary font-mono w-10 text-center font-semibold">{zoom}%</span>
           <button 
             onClick={() => setZoom(prev => Math.min(400, prev + 25))}
-            className="p-1.5 hover:bg-slate-800 text-slate-400 hover:text-white rounded transition"
+            className="p-1.5 hover:bg-bg-input text-txt-secondary hover:text-txt-primary rounded transition border border-border-main cursor-pointer"
             title="Perbesar Tampilan"
           >
             <ZoomIn size={16} />
           </button>
           <button 
             onClick={resetView}
-            className="p-1.5 hover:bg-slate-800 text-slate-400 hover:text-white rounded transition border border-slate-800 ml-1"
-            title="Atur Ulang Tampilan"
+            className="p-1.5 hover:bg-bg-input text-txt-secondary hover:text-txt-primary rounded transition border border-border-main ml-1 cursor-pointer"
+            title="Atur Ulang Posisi & Zoom"
           >
             <Maximize size={16} />
           </button>
@@ -95,11 +95,13 @@ export const TShirtMockup: React.FC<TShirtMockupProps> = ({ processedImage, sett
         onMouseLeave={handleMouseUp}
         style={{
           backgroundImage: settings.mockupType === 'flat' && settings.mockupShowGrid 
-            ? 'linear-gradient(45deg, #121824 25%, transparent 25%), linear-gradient(-45deg, #121824 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #121824 75%), linear-gradient(-45deg, transparent 75%, #121824 75%)'
+            ? 'linear-gradient(45deg, var(--checker-dark, #cbd5e1) 25%, transparent 25%), linear-gradient(-45deg, var(--checker-dark, #cbd5e1) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--checker-dark, #cbd5e1) 75%), linear-gradient(-45deg, transparent 75%, var(--checker-dark, #cbd5e1) 75%)'
             : 'none',
           backgroundSize: '20px 20px',
           backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-          backgroundColor: settings.mockupType === 'flat' ? '#0b0f19' : settings.mockupBgColor,
+          backgroundColor: settings.mockupType === 'flat' 
+            ? (settings.mockupShowGrid ? 'var(--bg-input)' : settings.mockupBgColor) 
+            : 'var(--bg-app)',
         }}
       >
         {/* Render container with dynamic zoom and pan */}
@@ -229,7 +231,7 @@ export const TShirtMockup: React.FC<TShirtMockupProps> = ({ processedImage, sett
                     }}
                   />
                 ) : (
-                  <div className="text-center p-2 text-slate-400 text-[10px]">
+                  <div className="text-center p-2 text-txt-secondary text-[10px]">
                     Unggah desain untuk melihat hasil cetak
                   </div>
                 )}
@@ -239,15 +241,15 @@ export const TShirtMockup: React.FC<TShirtMockupProps> = ({ processedImage, sett
             // Flat Canvas Mode
             <div className="relative flex items-center justify-center p-12 max-w-[85vw] max-h-[75vh]">
               {processedImage ? (
-                <div className="relative shadow-2xl border border-slate-700 bg-transparent rounded overflow-hidden">
+                <div className="relative shadow-2xl border border-border-main bg-transparent rounded overflow-hidden">
                   <img 
                     src={processedImage} 
                     alt="Processed Transparent Design" 
-                    className="max-w-[450px] max-h-[450px] object-contain block pointer-events-none"
+                    className="max-w-[450px] max-h-[450px] object-contain block pointer-events-none" 
                   />
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center w-80 h-80 border-2 border-dashed border-slate-700 bg-slate-950/40 text-slate-400 rounded-lg p-6 text-center">
+                <div className="flex flex-col items-center justify-center w-80 h-80 border-2 border-dashed border-border-main bg-bg-card-sub/60 text-txt-secondary rounded-lg p-6 text-center">
                   <p className="text-sm">Unggah desain atau pilih demo gambar di bawah untuk memulai pemrosesan warna.</p>
                 </div>
               )}
@@ -256,8 +258,8 @@ export const TShirtMockup: React.FC<TShirtMockupProps> = ({ processedImage, sett
         </div>
         
         {/* Help icon or indicator for dragging */}
-        <div className="absolute bottom-3 left-3 flex items-center space-x-1.5 px-2 py-1 bg-slate-950/70 border border-slate-800 rounded text-[10px] text-slate-400">
-          <Move size={12} />
+        <div className="absolute bottom-3 left-3 flex items-center space-x-1.5 px-2.5 py-1 bg-bg-card/90 border border-border-main rounded-md text-[10px] text-txt-secondary shadow-sm backdrop-blur-sm">
+          <Move size={12} className="text-gold" />
           <span>Seret mouse untuk geser</span>
         </div>
       </div>

@@ -37,15 +37,35 @@ export default function App() {
   // Theme state: dark (malam) or light (siang)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const saved = localStorage.getItem('3mr_theme');
-    return saved !== 'light'; // defaults to dark mode
+    if (saved) return saved === 'dark';
+    return true; // default to dark mode for screen printing studio aesthetic
   });
 
+  // Sync theme with html document element and meta theme-color
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
+      root.style.colorScheme = 'dark';
+      document.body.style.backgroundColor = '#0e0d0c';
+    } else {
+      root.classList.remove('dark');
+      root.setAttribute('data-theme', 'light');
+      root.style.colorScheme = 'light';
+      document.body.style.backgroundColor = '#f8f8f7';
+    }
+    localStorage.setItem('3mr_theme', isDarkMode ? 'dark' : 'light');
+
+    // Update meta theme-color if present
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', isDarkMode ? '#161413' : '#ffffff');
+    }
+  }, [isDarkMode]);
+
   const toggleTheme = () => {
-    setIsDarkMode(prev => {
-      const next = !prev;
-      localStorage.setItem('3mr_theme', next ? 'dark' : 'light');
-      return next;
-    });
+    setIsDarkMode(prev => !prev);
   };
   
   // High-res export progress states
@@ -336,7 +356,7 @@ export default function App() {
             <Logo size={42} showBorderGlow className="hover:scale-105 transition-transform duration-200" />
             <div>
               <h1 className="text-sm sm:text-base font-extrabold tracking-tight text-txt-primary flex items-center gap-2">
-                3MR Ruster
+                Three Mister Ruster
                 <span className="text-[10px] font-normal px-1.5 py-0.5 bg-gold/10 text-gold rounded-full border border-gold/20">
                   v1.2 PRO
                 </span>
@@ -352,21 +372,22 @@ export default function App() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="flex items-center justify-center gap-1.5 px-3 py-2 bg-bg-card border border-border-main hover:bg-bg-card-sub text-txt-secondary hover:text-gold rounded-lg text-xs shadow-sm transition duration-200 cursor-pointer"
-              title={isDarkMode ? "Ganti ke Mode Siang (Terang)" : "Ganti ke Mode Malam (Gelap)"}
+              className="flex items-center gap-2 px-2.5 py-1.5 bg-bg-card-sub border border-border-main hover:border-gold/40 rounded-full text-xs shadow-sm transition-all duration-200 cursor-pointer"
+              title={isDarkMode ? "Klik untuk ganti ke Mode Siang (Terang)" : "Klik untuk ganti ke Mode Malam (Gelap)"}
               id="theme-toggle-btn"
+              aria-label="Toggle Mode Siang dan Malam"
             >
-              {isDarkMode ? (
-                <>
-                  <Sun size={14} className="text-gold animate-pulse" />
-                  <span className="font-semibold text-[11px]">Mode Siang</span>
-                </>
-              ) : (
-                <>
-                  <Moon size={14} className="text-maroon-light" />
-                  <span className="font-semibold text-[11px]">Mode Malam</span>
-                </>
-              )}
+              <div className="flex items-center gap-1">
+                <span className={`p-1 rounded-full transition-all duration-200 ${!isDarkMode ? 'bg-amber-500/20 text-amber-500 shadow-sm' : 'text-txt-muted'}`}>
+                  <Sun size={13} className={!isDarkMode ? 'stroke-2' : 'stroke-1'} />
+                </span>
+                <span className={`p-1 rounded-full transition-all duration-200 ${isDarkMode ? 'bg-gold/20 text-gold shadow-sm' : 'text-txt-muted'}`}>
+                  <Moon size={13} className={isDarkMode ? 'stroke-2' : 'stroke-1'} />
+                </span>
+              </div>
+              <span className="font-semibold text-[11px] text-txt-primary pr-1 hidden sm:inline">
+                {isDarkMode ? 'Mode Malam' : 'Mode Siang'}
+              </span>
             </button>
 
             {originalImage && (
